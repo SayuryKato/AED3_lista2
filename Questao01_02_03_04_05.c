@@ -72,6 +72,26 @@ void verifica_adjacente(int numVertice, int matriz_adj[numVertice][numVertice], 
 	}
 }
 
+void grafo_completo(int numVertice, int matriz_adj[numVertice][numVertice]){
+	int i, j, cont=0, chave=0;
+	for(i=0; i<numVertice; i++){
+		for(j=0; j<numVertice; j++){
+			if(matriz_adj[i][j] == 0){
+				cont++;
+			}
+		}
+		if  (cont>1){
+			chave = 1;}
+		cont=0;
+	}
+	if (chave==1){
+		printf("\n\nO grafo nao e completo!\n");
+	}
+	else{
+		printf("\n\nO grafo e completo!\n");
+	}
+}
+
 int main(){
 	int i,j;
 	int numVertice, verifOrigem, verifDestino, vertice_adj;
@@ -83,14 +103,25 @@ int main(){
 	inicializaMatriz(numVertice, matriz_adj);
 	mostra_matriz(numVertice, matriz_adj);
 	
+	/*
 	insercao_matriz(numVertice, matriz_adj, 1,3);
 	insercao_matriz(numVertice, matriz_adj, 0,2);
 	insercao_matriz(numVertice, matriz_adj, 2,2);
 	insercao_matriz(numVertice, matriz_adj, 3,4);
 	mostra_matriz(numVertice, matriz_adj);
+	*/
 	
-	remove_aresta(numVertice, matriz_adj, 2,2);
+	insercao_matriz(numVertice, matriz_adj, 0,1);
+	insercao_matriz(numVertice, matriz_adj, 0,2);
+	insercao_matriz(numVertice, matriz_adj, 0,3);
+	insercao_matriz(numVertice, matriz_adj, 1,2);
+	insercao_matriz(numVertice, matriz_adj, 3,1);
+	insercao_matriz(numVertice, matriz_adj, 2,3);
 	mostra_matriz(numVertice, matriz_adj);
+	
+	
+	//remove_aresta(numVertice, matriz_adj, 2,2);
+	//mostra_matriz(numVertice, matriz_adj);
 	imprimeGrafo(numVertice, matriz_adj);
 	
 	
@@ -105,6 +136,7 @@ int main(){
 	printf("Digite o vertice: ");
 	scanf("%d", &vertice_adj);
 	verifica_adjacente(numVertice, matriz_adj, vertice_adj);
+	grafo_completo(numVertice, matriz_adj);
 	
 	/*
 	LiberaGrafo(numVertice, matriz_adj);
