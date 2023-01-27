@@ -79,6 +79,9 @@ void grafo_completo(int numVertice, int matriz_adj[numVertice][numVertice]){ // 
 			if(matriz_adj[i][j] == 0){	// Contará qunatas vezez aparece o zero.
 				cont++;
 			}
+			if(i==j && matriz_adj[i][j] == 1){	// Contará qunatas vezez aparece o zero.
+				cont++;
+			}
 		}
 		if  (cont>1){		// No momento que a contagem de zero da linha passar de 1, uma chave será ligada. Ela servirá para informar que 
 			chave = 1;}	 // O grafo não é completo. Pois o grafo completo poderá apenas nao ter uma ligacao com si mesmo, mas com os outros seria obrigatorio acontecer.
@@ -139,15 +142,17 @@ int main(){
 	inicializaMatriz(numVertice, matriz_adj);
 	mostra_matriz(numVertice, matriz_adj);
 	
-
+	/* // Grafo 1º teste
 	insercao_matriz(numVertice, matriz_adj, 1,3);
 	insercao_matriz(numVertice, matriz_adj, 0,2);
 	insercao_matriz(numVertice, matriz_adj, 2,2);
 	insercao_matriz(numVertice, matriz_adj, 3,4);
 	mostra_matriz(numVertice, matriz_adj);
-	
-	/* // Grafo completo e regular.
-	insercao_matriz(numVertice, matriz_adj, 0,1);
+
+	/*
+	 // Grafo nao completo e regular.
+	insercao_matriz(numVertice, matriz_adj, 0,0);
+	insercao_matriz(numVertice, matriz_adj, 1,1);
 	insercao_matriz(numVertice, matriz_adj, 0,2);
 	insercao_matriz(numVertice, matriz_adj, 0,3);
 	insercao_matriz(numVertice, matriz_adj, 1,2);
@@ -156,10 +161,21 @@ int main(){
 	mostra_matriz(numVertice, matriz_adj);
 	*/
 	
+	
+	// Grafo completo e regular.
+	insercao_matriz(numVertice, matriz_adj, 1,0);
+	insercao_matriz(numVertice, matriz_adj, 0,2);
+	insercao_matriz(numVertice, matriz_adj, 0,3);
+	insercao_matriz(numVertice, matriz_adj, 1,2);
+	insercao_matriz(numVertice, matriz_adj, 3,1);
+	insercao_matriz(numVertice, matriz_adj, 2,3);
+	mostra_matriz(numVertice, matriz_adj);
+	
 	remove_aresta(numVertice, matriz_adj, 2,2);
 	mostra_matriz(numVertice, matriz_adj);
-	imprimeGrafo(numVertice, matriz_adj);
 	
+	imprimeGrafo(numVertice, matriz_adj);
+
 	printf("\n    Verifica aresta\n");
 	printf("Digite o vertice de origem:");
 	scanf("%d", &verifOrigem);
